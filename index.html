@@ -6,19 +6,21 @@
     <title>BoodschApp!</title>
 </head>
 <body>
-    <div id="app">
-        <ol>
-            <shopping-list-item
-                    v-for="item in shoppingListItems"
-                    v-bind:item="item"
-                    v-bind:key="item.id"
-            ></shopping-list-item>
-            <button v-on:click="clearList">Clear all items</button>
-        </ol>
-    </div>
+<div id="app">
+    <input v-model="newItem" placeholder="Add a new item..." @keyup.enter="addItem">
+    <button @click="addItem">Add item</button>
+    <ol>
+        <shopping-list-item
+                v-for="item in shoppingListItems"
+                v-bind:item="item"
+                v-bind:key="item.id"
+        ></shopping-list-item>
+        <button v-on:click="clearList">Clear all items</button>
+    </ol>
+</div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="vue.js "></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="vue.js "></script>
 </body>
 </html>
