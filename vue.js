@@ -1,24 +1,22 @@
-Vue.component('todo-item', {
-  props: ['todo'],
-  template: '<li>{{ todo.text }}</li>'
+Vue.component('shopping-list-item', {
+  props: ['item'],
+  template: '<li>{{ item.text }}</li>'
 });
 
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!',
-    title: 'you found me, plz no hurt',
-    visible: true,
-    todos: [
-      { id: 1, text: 'Clean dishes' },
-      { id: 2, text: 'Clean toilet' },
-      { id: 3, text: 'Take out trash' },
+    shoppingListItems: [
+      { id: 1, text: 'Soup' },
+      { id: 2, text: 'Bread' },
+      { id: 3, text: 'Salami' },
     ]
   },
   methods: {
     clearList: function() {
-      alert('byby');
-      this.todos = [];
+      if (confirm('Are you sure you want to delete all items in your shopping list?')) {
+        this.shoppingListItems = [];
+      }
     }
   }
 });

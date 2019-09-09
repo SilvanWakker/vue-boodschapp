@@ -7,29 +7,14 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ message }}</p>
-        <p v-bind:title="title">Dynamic title</p>
-        <p v-if="visible">catch me!</p>
         <ol>
-            <li v-for="todo in todos">
-                {{ todo.text }}
-            </li>
+            <shopping-list-item
+                    v-for="item in shoppingListItems"
+                    v-bind:item="item"
+                    v-bind:key="item.id"
+            ></shopping-list-item>
+            <button v-on:click="clearList">Clear all items</button>
         </ol>
-        <div>
-            <button v-on:click="clearList">Clear list</button>
-        </div>
-        <div>
-            <input v-model="message">
-        </div>
-        <div>
-            <ol>
-                <todo-item
-                        v-for="item in todos"
-                        v-bind:todo="item"
-                        v-bind:key="item.id"
-                ></todo-item>
-            </ol>
-        </div>
     </div>
 
 
