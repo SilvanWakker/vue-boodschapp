@@ -8,6 +8,7 @@
 <body>
 <div id="app">
     <input v-model="newItem" placeholder="Add a new item..." @keyup.enter="addItem">
+    <input v-model="newQuantity" placeholder="Quantity" @keyup.enter="addItem">
     <button @click="addItem">Add item</button>
     <ol>
         <shopping-list-item
@@ -15,6 +16,7 @@
                 v-bind:item="item"
                 v-bind:key="item.id"
                 @delete-item="deleteItem"
+                @check-item="checkItem"
         ></shopping-list-item>
         <button v-on:click="clearList">Clear all items</button>
     </ol>
