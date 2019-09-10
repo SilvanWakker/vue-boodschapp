@@ -14,6 +14,7 @@
                 v-for="item in shoppingListItems"
                 v-bind:item="item"
                 v-bind:key="item.id"
+                @delete-item="deleteItem"
         ></shopping-list-item>
         <button v-on:click="clearList">Clear all items</button>
     </ol>
