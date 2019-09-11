@@ -4,26 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <title>BoodschApp!</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="app">
-    <input v-model="newItem" placeholder="Add a new item..." @keyup.enter="addItem">
-    <input v-model="newQuantity" placeholder="Quantity" @keyup.enter="addItem">
-    <button @click="addItem">Add item</button>
-    <ol>
-        <shopping-list-item
-                v-for="item in shoppingListItems"
-                v-bind:item="item"
-                v-bind:key="item.id"
-                @delete-item="deleteItem"
-                @check-item="checkItem"
-        ></shopping-list-item>
-        <button v-on:click="clearList">Clear all items</button>
-    </ol>
+    <h1>BoodschApp Shopping List</h1>
+    <div class="add-item-container">
+        <h2>Add new item</h2>
+        <input v-model="newItem" placeholder="Add a new item..."
+               @keyup.enter="addItem">
+        <input v-model="newQuantity" placeholder="Quantity"
+               @keyup.enter="addItem">
+        <button @click="addItem">Add item</button>
+    </div>
+
+    <div class="items-container">
+        <h2>Items</h2>
+        <ul>
+            <draggable v-model="shoppingListItems" @start="drag=true"
+                       @end="drag=false">
+                <shopping-list-item
+                        v-for="item in shoppingListItems"
+                        v-bind:item="item"
+                        v-bind:key="item.id"
+                        v-if="!item.checkedOff"
+                        @delete-item="deleteItem"
+                        @check-item="checkItem"
+                ></shopping-list-item>
+            </draggable>
+        </ul>
+        <button v-on:click="clearList">Delete all items</button>
+    </div>
+
+    <div class="checked-items-container">
+        <h2>Checked off items</h2>
+        <ul>
+            <li
+                    class="checked-off-item"
+                    v-for="item in shoppingListItems"
+                    v-if="item.checkedOff"
+            >{{ item.text }}
+            </li>
+        </ul>
+    </div>
 </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+<script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
+<!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
 <script src="vue.js "></script>
 </body>
 </html>

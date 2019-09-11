@@ -22,6 +22,7 @@ var app = new Vue({
     // The new item input value.
     newItem: null,
     newQuantity: 1,
+    drag: false,
     // The ID of the next item.
     nextId: 4,
     shoppingListItems: [
